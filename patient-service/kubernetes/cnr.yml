@@ -1,0 +1,18 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: patient-service
+  namespace: frontdoor
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+    spec:
+      containers:
+        - image: jeffgbutler/patient-service@sha256:27ad9f4b8b28bd31fedff5fcbec9579de38a66e8fb1e433d6697f8f96dcea9b6
+          ports:
+            - containerPort: 8091
+          env:
+            - name: "spring.profiles.active"
+              value: "kubernetes"

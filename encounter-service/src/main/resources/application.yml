@@ -1,0 +1,14 @@
+fhir:
+  endpoint: http://hapi-fhir.tanzuathome.net/fhir
+server:
+  port: 8093
+wavefront:
+  application:
+    name: Tanzu Hospital
+    service: Encounter Service
+management:
+  metrics:
+    export:
+      wavefront:
+        api-token: ba0137dc-9927-4913-8254-d52e68326a61
+        uri: https://surf.wavefront.com

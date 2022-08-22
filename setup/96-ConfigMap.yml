@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tanzu-hospital-config
+  namespace: frontdoor
+data:
+  allergy-service: http://allergy-service.frontdoor.tanzuhospital.com
+  encounter-service: http://encounter-service.frontdoor.tanzuhospital.com
+  patient-service: http://patient-service.frontdoor.tanzuhospital.com
+  fhir-endpoint: http://hapi-fhir.tanzuathome.net/fhir
+  wavefront.api-token: ****CHANGE ME****
+  wavefront.uri: https://wavefront.surf

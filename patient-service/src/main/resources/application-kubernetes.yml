@@ -1,0 +1,4 @@
+hospital:
+  services:
+    allergy-service: http://allergy-service.frontdoor.tanzuhospital.com
+    encounter-service: http://encounter-service.frontdoor.tanzuhospital.com

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hapi-fhir
+  name: hapi-fhir
+  namespace: tanzu-hospital
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hapi-fhir
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: hapi-fhir
+    spec:
+      containers:
+        - env:
+            - name: spring.datasource.url
+              value: "jdbc:mysql://tanzu-hospital-mysql-mariadb:3306/hapi_dstu3"
+            - name: spring.datasource.username
+              value: "root"
+            - name: spring.datasource.password
+              value: "root"
+            - name: spring.datasource.driverClassName
+              value: "com.mysql.jdbc.Driver"
+            - name: hapi.fhir.tester.home.name
+              value: "Tanzu Hospital Tester"
+            - name: hapi.fhir.tester.home.server_address
+              value: "http://hapi-fhir.tanzuathome.net/fhir"
+            - name: hapi.fhir.tester.home.refuse_to_fetch_third_party_urls
+              value: "false"
+            - name: hapi.fhir.tester.home.fhir_version
+              value: "R4"
+          image: hapiproject/hapi:latest
+          name: hapi-fhir
+          ports:
+            - containerPort: 8080
+      restartPolicy: Always

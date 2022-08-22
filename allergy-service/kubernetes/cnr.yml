@@ -1,0 +1,18 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: allergy-service
+  namespace: frontdoor
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+    spec:
+      containers:
+        - image: jeffgbutler/allergy-service@sha256:7b026cb6e99fa114235582220fad275d2b82c02fe4d7c26fd3c04c1fa6627d9f
+          ports:
+            - containerPort: 8092
+          env:
+            - name: "spring.profiles.active"
+              value: "kubernetes"

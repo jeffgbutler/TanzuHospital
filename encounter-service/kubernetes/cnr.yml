@@ -1,0 +1,18 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: encounter-service
+  namespace: frontdoor
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+    spec:
+      containers:
+        - image: jeffgbutler/encounter-service@sha256:aeae71f8d4a2c91b6866f2afd41c919249f715b213d59211c580f7df600f19b6
+          ports:
+            - containerPort: 8093
+          env:
+            - name: "spring.profiles.active"
+              value: "kubernetes"

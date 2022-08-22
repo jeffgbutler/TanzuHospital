@@ -1,0 +1,5 @@
+spring:
+  main:
+    web-application-type: none
+fhir:
+  endpoint: http://hapi-fhir.tanzuathome.net/fhir

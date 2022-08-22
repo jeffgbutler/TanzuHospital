@@ -1,0 +1,21 @@
+server:
+  port: 8090
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,prometheus,wavefront
+  metrics:
+    export:
+      wavefront:
+        api-token: ba0137dc-9927-4913-8254-d52e68326a61
+        uri: https://surf.wavefront.com
+wavefront:
+  application:
+    name: Tanzu Hospital
+    service: Hospital API
+hospital:
+  services:
+    patient-service: http://localhost:8091
+welcome:
+  message: Welcome to Tanzu Hospital!

@@ -1,0 +1,3 @@
+hospital:
+  services:
+    patient-service: http://patient-service.frontdoor.tanzuhospital.com
